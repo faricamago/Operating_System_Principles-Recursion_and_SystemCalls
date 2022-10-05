@@ -37,13 +37,13 @@ int main(int argc, char ** argv)
   printf("Number of files:   %ld\n", res.n_files);
   printf("Number of dirs:    %ld\n", res.n_dirs);
   printf("Total file size:   %ld\n", res.all_files_size);
-  printf("Most common words:\n");
+  printf("Most common words from .txt files:\n");
   for (auto & w : res.most_common_words)
     printf(" - \"%s\" x %d\n", w.first.c_str(), w.second);
-  printf("Empty directories\n");
-  for (auto & d : res.empty_dirs)
+  printf("Vacant directories:\n");
+  for (auto & d : res.vacant_dirs)
     printf(" - \"%s\"\n", d.c_str());
-  printf("Empty directories\n");
+  printf("Largest images:\n");
   for (auto & ii : res.largest_images)
     printf(" - \"%s\" %ldx%ld\n", ii.path.c_str(), ii.width, ii.height );
   printf("--------------------------------------------------------------\n");

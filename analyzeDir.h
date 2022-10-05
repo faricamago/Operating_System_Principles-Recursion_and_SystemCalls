@@ -34,10 +34,10 @@ struct Results
   // largest (in pixels) images found in the directory,
   // sorted by their size (in pixels), reported with their width and height
   std::vector<ImageInfo> largest_images;
-  // list of empty directories
-  // empty directory is one that contains 0 files anywhere, including in subdirectories
-  // if a directory is reported empty, none of its subdirectories should be reported here
-  std::vector<std::string> empty_dirs;
+  // list of vacant directories
+  // vacant directory is one that contains no files anywhere, including in subdirectories (resursive)
+  // if a directory is reported vacant, none of its subdirectories should be reported here
+  std::vector<std::string> vacant_dirs;
 };
 
 Results analyzeDir(int n);

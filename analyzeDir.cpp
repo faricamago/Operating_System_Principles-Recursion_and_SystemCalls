@@ -46,29 +46,13 @@ static bool ends_with(const std::string & str, const std::string & suffix)
 // analyzeDir(n) computes stats about current directory
 //   n = how many words and images to report in restuls
 //
+// The code below is incomplate/incorrect. Feel free to re-use any of it
+// in your implementation, or delete all of it.
 Results analyzeDir(int n)
 {
-  // The results below are all hard-coded, to show you all the fields
-  // you need to calculate. You should delete all code below and
-  // replace it with your own code.
-  Results res;
-  res.largest_file_path = "some_dir/some_file.txt";
-  res.largest_file_size = 123;
-  res.n_files = 321;
-  res.n_dirs = 333;
-  res.all_files_size = 1000000;
-
-  res.most_common_words.push_back({ "hello", 3 });
-  res.most_common_words.push_back({ "world", 1 });
-
-  ImageInfo info1 { "img1", 640, 480 };
-  res.largest_images.push_back(info1);
-  res.largest_images.push_back({ "img2.png", 200, 300 });
-
-  res.empty_dirs.push_back("path1/subdir1");
-  res.empty_dirs.push_back("test2/xyz");
-
-  // the code below does a subset of the functionality you need to implement
+  // The code below does a subset of the functionality you need to implement.
+  // It also contains several debugging printf() statements. When you submit
+  // your code for grading, please remove any dubugging pritf() statements.
   std::string dir_name = ".";
   auto dir = opendir(dir_name.c_str());
   assert(dir != nullptr);
@@ -77,6 +61,7 @@ Results analyzeDir(int n)
     // skip . and .. entries
     if (name == "." or name == "..") continue;
     printf(" - \"%s\"\n", name.c_str());
+
     // check if this is directory
     if (is_dir(name)) {
       printf("    - is a directory\n");
@@ -102,7 +87,8 @@ Results analyzeDir(int n)
     else
       printf("    - is not a .txt file\n");
 
-    // let's see if we can manage to get image info
+    // let's see if this is an image and whether we can manage to get image info
+    // by calling an external utility 'identify'
     std::string cmd = "identify -format '%wx%h' " + name + " 2> /dev/null";
     std::string img_size;
     auto fp = popen(cmd.c_str(), "r");
@@ -122,5 +108,24 @@ Results analyzeDir(int n)
   }
   closedir(dir);
 
+  // The results below are all hard-coded, to show you all the fields
+  // you need to calculate. You should delete all code below and
+  // replace it with your own code.
+  Results res;
+  res.largest_file_path = "some_dir/some_file.txt";
+  res.largest_file_size = 123;
+  res.n_files = 321;
+  res.n_dirs = 333;
+  res.all_files_size = 1000000;
+
+  res.most_common_words.push_back({ "hello", 3 });
+  res.most_common_words.push_back({ "world", 1 });
+
+  ImageInfo info1 { "img1", 640, 480 };
+  res.largest_images.push_back(info1);
+  res.largest_images.push_back({ "img2.png", 200, 300 });
+
+  res.vacant_dirs.push_back("path1/subdir1");
+  res.vacant_dirs.push_back("test2/xyz");
   return res;
 }

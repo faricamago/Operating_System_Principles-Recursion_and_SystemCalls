@@ -100,7 +100,6 @@ class DirAnalyzer:
 
     def _process(self, dir=None):
         self._progress()
-        # print("get_empty_dirs", dir)
         self.ndirs += 1
         nfiles = 0
         empties = []
@@ -141,7 +140,7 @@ class DirAnalyzer:
         print("Most common words from .txt files:")
         for w in self.whist:
             print(f' - "{w[1]}" x {-w[0]:d}')
-        print("Empty directories:")
+        print("Vacant directories:")
         for d in self.empties:
             print(f'  - "{d}"')
         print("Largest images:")
