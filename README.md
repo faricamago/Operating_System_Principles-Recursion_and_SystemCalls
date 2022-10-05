@@ -17,7 +17,7 @@ The included `analyzeDir.py` is a correct implementation of the assignment in py
 for your own implementation. For example:
 
 ```
-$ ./analyzeDir 5 test1
+$ ./analyzeDir.py 5 test1
 ```
 
 
