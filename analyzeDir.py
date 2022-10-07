@@ -3,11 +3,7 @@
 # Copyright (C) 2022 Pavol Federl (pfederl@ucalgary.ca)
 # All Rights Reserved. Do not distribute this file.
 
-from genericpath import isfile
-import os, sys, subprocess, collections, hashlib, shlex, time
-from re import sub
-from typing import List
-
+import os, subprocess, collections, shlex, sys, time
 
 def get_pic_size(pth):
     try:
@@ -48,7 +44,7 @@ class DirAnalyzer:
         self.whist = [(-e[1], e[0]) for e in self.whist.items()]
         self.whist = sorted(self.whist)
         self.whist = self.whist[:n]
-        self.pics.sort(key=lambda e: e[1][0] * e[1][1])
+        self.pics.sort(key=lambda e: e[1][0] * e[1][1], reverse=True)
         self.pics = self.pics[:n]
         self._report()
 
