@@ -78,7 +78,7 @@ Results analyzeDir(int n)
       if (0 != stat(name.c_str(), &buff)) 
         printf("    - could not determine size of file\n");
       else
-        printf("    - file size: %ld\n", long(buff.st_size));
+        printf("    - file size: %ld bytes\n", long(buff.st_size));
 
     }
     // check if filename ends with .txt
@@ -92,19 +92,18 @@ Results analyzeDir(int n)
     std::string cmd = "identify -format '%wx%h' " + name + " 2> /dev/null";
     std::string img_size;
     auto fp = popen(cmd.c_str(), "r");
-    if( fp) {
-      char buff[PATH_MAX];
-      if( fgets(buff, PATH_MAX, fp) != NULL) {
-        img_size = buff;
-      }
-      int status = pclose(fp);
-      if( status != 0 or img_size[0] == '0')
-        img_size = "";
-      if( img_size.empty())
-        printf("    - not an image\n");
-      else
-        printf("    - image %s\n", img_size.c_str());
+    assert(fp);
+    char buff[PATH_MAX];
+    if( fgets(buff, PATH_MAX, fp) != NULL) {
+      img_size = buff;
     }
+    int status = pclose(fp);
+    if( status != 0 or img_size[0] == '0')
+      img_size = "";
+    if( img_size.empty())
+      printf("    - not an image\n");
+    else
+      printf("    - image %s\n", img_size.c_str());
   }
   closedir(dir);
 
