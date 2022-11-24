@@ -1,4 +1,4 @@
-**WARNING** Do not upload any files in this repository to public websites. If you want to clone this repository, please make sure to keep it private.
+#A2-F22-Updated.pdf gives the specifications of this assignment
 
 # analyzeDir - skeleton for Assignment 2
 
